@@ -23,7 +23,7 @@
         <td>{{Student.rollNumber}}</td>
         <td>{{Student.birthDate}}</td>
         <td>{{Student.mobileNumber}}</td>
-        <td><button click="deleteStudent()">Delete</button></td>
+        <td><button (click)="deleteStudent(Student.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

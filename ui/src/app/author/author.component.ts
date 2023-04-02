@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http'; 
+import { error } from 'console';
 @Component({
   selector: 'app-author',
   templateUrl: './author.component.html',
@@ -10,43 +11,23 @@ export class AuthorComponent implements OnInit {
 
   constructor(private router:Router, private http:HttpClient) { }
   title = "LIST OF AUTHORS"
-  authorList = [
-    {
-      "id": 1,
-      "name": "Arthur Conan Doyle",
-      "birthDate": "10/05/1860",
-      "nationality": "British"
-    },
-    {
-      "id": 2,
-      "name": "James Dutta Chowdhury",
-      "birthDate": "10/09/1890",
-      "nationality": "Indian"
-    },
-    {
-      "id": 3,
-      "name": "J K Rowling",
-      "birthDate": "19/03/1974",
-      "nationality": "American"
-    },
-    {
-      "id": 4,
-      "name": "Rabindranath Tagore",
-      "birthDate": "22/02/1880",
-      "nationality": "Pakistani"
-    },
-    {
-      "id": 5,
-      "name": "Adolf Hitler",
-      "birthDate": "20/04/1889",
-      "nationality": "German"
-    }
-  ]
+  authorList:any = []
   ngOnInit(): void {
+    this.fetchAllAuthors();
   }
   addAuthor()
   {
     console.log("Add Author Button was clicked!");
     this.router.navigateByUrl('/add-author');
+  }
+  fetchAllAuthors()
+  {
+    this.http.get('http://localhost:8080/author/allAuthors').subscribe(resp => {this.authorList = resp; console.log("Authors retreived successfully.", this.authorList);}, error => {console.log("Error retrieving authors.", error);});
+  }
+  deleteAuthor(authorId:Number)
+  {
+    const url = 'http://localhost:8080/author/deleteById/'+authorId;
+    console.log(url);
+    this.http.delete(url).subscribe(resp => {console.log("Author deleted successfully."); this.fetchAllAuthors();}, error => {console.log("Error deleting author.", error);});
   }
 }

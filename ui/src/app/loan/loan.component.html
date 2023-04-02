@@ -23,7 +23,7 @@
         <td>{{loan.checkoutDate}}</td>
         <td>{{loan.dueDate}}</td>
         <td>{{loan.returnDate}}</td>
-        <td><button click="deleteLoan">Delete</button></td>
+        <td><button (click)="deleteLoan(loan.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

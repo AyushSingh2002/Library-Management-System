@@ -19,7 +19,7 @@
         <td>{{admin.name}}</td>
         <td>{{admin.username}}</td>
         <td>{{admin.password}}</td>
-        <td><button click="deleteAdmin()">Delete</button></td>
+        <td><button (click)="deleteAdmin(admin.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

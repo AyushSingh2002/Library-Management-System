@@ -19,7 +19,7 @@
         <td>{{author.name}}</td>
         <td>{{author.birthDate}}</td>
         <td>{{author.nationality}}</td>
-        <td><button click="deleteAuthor()">Delete</button></td>
+        <td><button (click)="deleteAuthor(author.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>

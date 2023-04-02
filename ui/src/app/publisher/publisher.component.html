@@ -21,7 +21,7 @@
         <td>{{publisher.address}}</td>
         <td>{{publisher.phone}}</td>
         <td>{{publisher.email}}</td>
-        <td><button click="deletePublisher()">Delete</button></td>
+        <td><button (click)="deletePublisher(publisher.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
